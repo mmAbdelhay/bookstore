@@ -11,6 +11,7 @@ def create_new_ref_number():
 # class Isbn(models.Model):
 #     isbn_number = models.CharField(max_length=10, unique=True, default=create_new_ref_number())
 #     title = models.CharField(max_length=10)
+#     author = models.CharField(max_length=50)
 
 
 class Category(models.Model):
@@ -39,7 +40,8 @@ class Store(models.Model):
     isbn_number = models.CharField(max_length=10, unique=True, default=create_new_ref_number())
     # Isbn = models.OneToOneField(Isbn, on_delete=models.CASCADE, null=True, blank=True)
     category = models.ManyToManyField(Category)
-    metrics = models.OneToOneField(Metric, on_delete=models.CASCADE, null=True, blank=True)
+    metrics = models.ForeignKey(Metric, on_delete=models.CASCADE, null=True, blank=True)
+    thumb = models.ImageField(upload_to='books')
 
     def __str__(self):
         return self.title

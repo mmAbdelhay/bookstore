@@ -1,10 +1,12 @@
 {% extends 'layout/main.html' %}
 {% block title %} index {% endblock %}
 
+
 {% block body %}
     <a class="btn btn-block btn-outline-success" href="{% url 'create' %}">Create a new book</a>
     <br>
     {% for book in books %}
+        <img src="{{ book.thumb.url }}" alt="img" width="100px">
         <h2>{{ book.title }}</h2>
         <h5><b>{{ book.author }}</b></h5>
         <p>{{ book.content }}</p>

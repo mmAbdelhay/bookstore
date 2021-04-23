@@ -1,15 +1,19 @@
 from django.shortcuts import render, redirect
 from .forms import StoreForm
 from .models import Store
+from django.contrib.auth.decorators import login_required, permission_required
 
 
+@login_required(login_url="/login")
+@permission_required(["store.view_store"], raise_exception=True)
 def index(request):
     books = Store.objects.all()
-    return render(request, 'store/index.html',{
+    return render(request, 'store/index.html', {
         "books": books
     })
 
 
+@login_required
 def create(request):
     form = StoreForm(request.POST or None)
     if form.is_valid():

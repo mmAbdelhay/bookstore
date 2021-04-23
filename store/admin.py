@@ -10,7 +10,7 @@ class StoreAdmin(admin.ModelAdmin):
     list_display = ("title", "author")
     list_filter = ("category",)
     search_fields = ("title",)
-    readonly_fields = ("author",)
+    # readonly_fields = ("author",)
 
 
 class StoreInline(admin.StackedInline):
