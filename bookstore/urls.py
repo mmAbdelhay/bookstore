@@ -15,16 +15,24 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from rest_framework import routers
+from store.api.views import BookViewSet
+
+router = routers.DefaultRouter()
+router.register("", BookViewSet)
 
 urlpatterns = [
     path("", include('django.contrib.auth.urls')),
     path("", include('accounts.urls')),
     path('admin/', admin.site.urls),
-    path('store/', include('store.urls'))
+    path('store/', include('store.urls')),
+    path('api/store/', include('store.api.urls')),
+    path('api/viewsets/store', include(router.urls))
 ]
 
 from django.conf import settings
 
 if settings.DEBUG:
     from django.conf.urls.static import static
+
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

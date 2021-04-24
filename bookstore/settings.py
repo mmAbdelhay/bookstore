@@ -34,13 +34,16 @@ INSTALLED_APPS = [
     'store',
     "accounts",
     'crispy_forms',
+    "rest_framework",
+    "rest_framework.authtoken",
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    # 'store.apps.StoreConfig'
+    # 'store.apps.StoreConfig',
+    'bootstrap4',
 ]
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
@@ -55,6 +58,12 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     # 'accounts.middleware.SimpleMiddleware'
 ]
+
+# REST_FRAMEWORK = {
+#     'DEFAULT_PERMISSION_CLASSES': [
+#         'rest_framework.authentication.TokenAuthentication'
+#     ]
+# }
 
 ROOT_URLCONF = 'bookstore.urls'
 
