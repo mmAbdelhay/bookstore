@@ -9,5 +9,7 @@ urlpatterns = [
     path("signup", views.api_signup),
     path('store', views.CreateBook.as_view()),
     path('list', views.ListBook.as_view()),
+    path('delete/<int:id>', views.delete),
+    path('update/<int:id>', views.update),
     path('<int:pk>', views.CrudBook.as_view()),
 ]

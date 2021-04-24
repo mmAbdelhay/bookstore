@@ -8,13 +8,8 @@ from rest_framework import generics
 from rest_framework import viewsets
 
 
-# class IsViewer(BasePermission):
-#     def has_permission(self, request, view):
-#         return request.user.group.filter(name='viewers').exists()
-
-
 @api_view(["GET"])
-# @permission_classes([IsAuthenticated, IsViewer])
+@permission_classes([IsAuthenticated])
 def index(request):
     posts = Store.objects.all()
     serializer = StoreSerializer(instance=posts, many=True)
@@ -53,8 +48,8 @@ def api_signup(request):
     }, status=status.HTTP_400_BAD_REQUEST)
 
 
-@api_view(['GET'])
-def delete(request,id):
+@api_view(['DELETE'])
+def delete(request, id):
     book = Store.objects.get(pk=id)
     serializer = StoreSerializer(instance=book, many=False)
     serializer.delete()
@@ -64,10 +59,10 @@ def delete(request,id):
     }, status=status.HTTP_200_OK)
 
 
-@api_view(['POST'])
-def update(request,id):
+@api_view(['PUT'])
+def update(request, id):
     book = Store.objects.get(pk=id)
-    serializer = StoreSerializer(instance=book, many=False,data=request.data)
+    serializer = StoreSerializer(instance=book, many=False, data=request.data)
     if serializer.is_valid():
         serializer.save()
         return Response(data={

@@ -7,7 +7,7 @@ from django.contrib.auth.models import User
 class StoreSerializer(serializers.ModelSerializer):
     class Meta:
         model = Store
-        fields = ('title', 'content', 'author')
+        fields = ('id','title', 'content', 'author')
 
     def delete(self):
         id = self.data.get('id')
